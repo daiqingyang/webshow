@@ -1,7 +1,7 @@
 1、主要程序在webshow\home目录，静态文件在webshow\templates目录。
 2、需要更改webshow\webshow\settings里面的数据库设置，并在数据库中添加相应的库。
 更改后运行manage.py sqlall生产建表语句，运行manage.py syncdb同步到数据库。
-3、需要在后台管理的Add classs表里面插入课程和自定义的邀请码。（http://192.168.1.9:8000/admin/）
+3、需要在后台管理的Add classs表里面插入课程和自定义的邀请码。（http://ip:port/admin/）
 ClassName:（课程名字）
 Invate key:（课程唯一邀请码）
 CanRegister:(是否允许注册，当学员注册完毕后，可以关闭此项，禁止他人注册成为该类）
