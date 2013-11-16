@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Signin </title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+{% ifequal status "fail" %}
+    <script type="text/javascript">
+    window.onload=function()
+    {
+            var form=document.getElementById("form");
+            var user=document.getElementById("user");
+            var passwd=document.getElementById("passwd");
+            var passwd2=document.getElementById("passwd2");
+            var invated=document.getElementById("invated");
+            var btn=document.getElementById("btn");
+
+            user.onfocus=function(){
+                user.className="form-control ";
+            }
+            passwd.onfocus=function(){
+              passwd.className="form-control ";
+            }
+            passwd2.onfocus=function(){
+             passwd2.className="form-control ";
+            }
+            invated.onfocus=function(){
+                invated.className="form-control ";
+                invated.value="";
+            }
+
+            btn.onclick=function(){
+                if (user.value=="" || user.value.length<5 ||user.value.length>15){
+                    user.className+=" alert-danger";
+
+                }else if (passwd.value=="" || passwd.value.length<5 ||passwd.value.length>10){
+                    passwd.className+="alert-danger";
+                }else if(passwd2.value=="" || passwd2.value.length<5 ||passwd2.value.length>10 ||passwd2.value!=passwd.value){
+                    passwd2.className+="alert-danger";
+                }else if(invated.value=="" || invated.value=="无效的邀请码"){
+                    invated.className+="alert-danger ";
+                }else {
+                    document.getElementById("form1").submit();
+                }
+             }
+
+    }
+
+    </script>
+{% endifequal %}
+</head>
+
+<body>
+<hr>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container">
+
+{% ifequal status "fail" %}
+
+    <h3 class="text-center text-info" >Please register</h3>
+    <br>
+    <br>
+    <br>
+
+    <div class="col-sm-8 col-sm-offset-2">
+        <form class="form-horizontal" method="post" action="" id="form1">
+
+            <div class="form-group ">
+            <label class="col-sm-2 control-label"> 用户名:</label>
+             <div class="col-sm-5">
+{% if userFailed %}
+              <input type="text" class="form-control alert-danger"  name="user" id="user" value="已注册的用户">
+{% else %}
+             <input type="text" class="form-control "   id="user" name="user" />
+{% endif %}
+             </div>
+             <div class="col-sm-3 text-success" >* &nbsp 5-15个英文字符</div>
+
+             </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">密码:</label>
+                <div class="col-sm-5">
+                    <input type="password" class="form-control "  id="passwd" name="passwd" />
+                </div>
+                <div class="col-sm-3 text-success">* &nbsp 5-10个字符</div>
+
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">确认密码:</label>
+                <div class="col-sm-5">
+                    <input type="password" class="form-control "  id="passwd2" name="passwd" />
+                </div>
+                <div class="col-sm-3 text-success">* &nbsp 5-10个字符</div>
+
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" >邀请码:</label>
+                <div class="col-sm-5">
+{% if invatedFailed %}
+                    <input type="text" class="form-control alert-danger " id="invated"  name="invated" value="无效的邀请码">
+{% else %}
+                    <input type="text" class="form-control " id="invated" name="invated" />
+{% endif %}
+                </div>
+                <div class="col-sm-3 text-success">* &nbsp 来自其他账号的邀请码</div>
+            </div>
+            <div class="col-sm-5 col-sm-offset-2">
+                <button class=" btn btn-lg btn-primary btn-block" type="button" id="btn">注册 </button>
+             </div>
+        </form>
+    </div>
+{% else %}
+<hr>
+    <h2>提示信息：注册成功，请<a href="/login">登录</a></h2>
+<hr>
+{% endifequal %}
+</div> <!-- /container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/bootstrap.js"></script>
+
+</body>
+</html>

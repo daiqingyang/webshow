@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Signin </title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+<hr>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container">
+{% if not username %}
+    <div class="col-sm-4 col-sm-offset-4">
+    <form method="post" action="">
+        <h3 >Please sign in</h3>
+
+{% ifequal error False %}
+        <input type="text" class="form-control" placeholder="username" required="" autofocus="" name="username" >
+        <input type="password" class="form-control" placeholder="Password" required="" name="password">
+{% else %}
+        <input type="text" class="form-control" placeholder="错误的账号或者密码" required="" autofocus="" name="username">
+        <input type="password" class="form-control" placeholder="错误的账号或者密码" required="" name="password">
+{% endifequal %}
+{#        <label class="checkbox">#}
+{#            <input type="checkbox" value="remember-me"> Remember me#}
+{#        </label>#}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登陆 </button>
+        <button class="btn btn-lg btn-warning btn-block" type="button"><a href="/register">注册</a></button>
+    </form>
+    </div>
+{% else %}
+    <hr>
+    <h2>提示信息：登陆成功，正在<a href="/">跳转</a></h2>
+    <hr>
+    <script type="text/javascript">
+    function jump(){
+        location.href="/";
+    }
+    setTimeout(jump,2000);
+    </script>
+{% endif %}
+</div> <!-- /container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="static/js/jquery.js"></script>
+<script src="static/js/bootstrap.js"></script>
+
+</body>
+</html>
