@@ -19,3 +19,4 @@ urlpatterns = patterns('',
     url(r'^register/$',register),
     url(r'^draw/$',draw),
 )
+   
